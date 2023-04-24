@@ -14,11 +14,18 @@ var questionIndex = 0;
 
 var isEnd = false;
 
+var finalScore;
+var scores =[];
+
 //get questions from questions.js
 var questions = JSON.parse(localStorage.getItem("questions"));
 console.log(questions);
 
 function showQuestions(questionIndex) {
+    var storedScores = JSON.parse(localStorage.getItem("savedScores"));
+    if(storedScores!=null){
+        scores = storedScores;
+    }
     console.log("hie");
     startScreenEl.setAttribute("class", "hide");
 
@@ -73,18 +80,18 @@ function countdown() {
     // Use the `setInterval()` method to call a function to be executed every second
     var timeInterval = setInterval(function () {
         //if there's time left
-        
+
         //prevents timer to display a negative number at the end in case games max time changes
-        if(timeLeft<=0){
-            timeLeft =0;
-        }else{
+        if (timeLeft <= 0) {
+            timeLeft = 0;
+        } else {
             timeLeft--;
         }
         timerEl.textContent = timeLeft;
-        
+
 
         if (timeLeft <= 0 || isEnd) {
-            
+
             clearInterval(timeInterval);
             showEndScreen();
         }
@@ -132,10 +139,32 @@ function showEndScreen() {
     //show end screen
     endSccreenEl.setAttribute("class", "");
 
-    var finalScore = document.getElementById("final-score");
+    finalScore = document.getElementById("final-score");
     finalScore.textContent = timeLeft;
 
 }
+
+//submitting initials
+submitInitials.addEventListener("click", function (event) {
+
+    event.preventDefault();
+    console.log("submit");
+    //get form elements
+    var initialsEl = document.getElementById("initials")
+
+    var initials = initialsEl.value.trim();
+    initials = initials.toUpperCase();
+    if (initials.length > 3 || initials.length == 0) {
+        alert("ERROR! Initials must be 0-3 letters long!");
+    } else {
+        var currentScore = [initials, finalScore.textContent];
+        scores.push(currentScore);
+        localStorage.setItem("savedScores",JSON.stringify(scores));
+        window.location.replace("highscores.html");
+    }
+
+})
+
 
 startButton.addEventListener('click', startQuiz);
 
