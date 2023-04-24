@@ -7,10 +7,12 @@ var feedbackEl = document.getElementById('feedback');
 var choicesEl = document.getElementById("choices");
 var titleEl = document.getElementById("question-title");
 
+var submitInitials = document.getElementById("submit");
 
-var timeLeft =75;
-var questionIndex =0;
+var timeLeft = 75;
+var questionIndex = 0;
 
+var isEnd = false;
 
 //get questions from questions.js
 var questions = JSON.parse(localStorage.getItem("questions"));
@@ -41,14 +43,14 @@ function showQuestions(questionIndex) {
         }
     }
 
-    feedbackEl.setAttribute("class","feedback");
-    feedbackEl.textContent="";
+    feedbackEl.setAttribute("class", "feedback");
+    feedbackEl.textContent = "";
 
-    
+
 
 }
 
-function nextQuestion(questionIndex){
+function nextQuestion(questionIndex) {
 
     var question = questions[questionIndex];
 
@@ -56,7 +58,7 @@ function nextQuestion(questionIndex){
 
     //add choices buttons
     for (i = 0; i < question.choices.length; i++) {
-       
+
         choicesEl.children[i].textContent = question.choices[i];
 
         if (question.choices[i] == question.answer) {
@@ -71,8 +73,21 @@ function countdown() {
     // Use the `setInterval()` method to call a function to be executed every second
     var timeInterval = setInterval(function () {
         //if there's time left
-        timeLeft--;
+        
+        //prevents timer to display a negative number at the end in case games max time changes
+        if(timeLeft<=0){
+            timeLeft =0;
+        }else{
+            timeLeft--;
+        }
         timerEl.textContent = timeLeft;
+        
+
+        if (timeLeft <= 0 || isEnd) {
+            
+            clearInterval(timeInterval);
+            showEndScreen();
+        }
 
     }, 1000);
 }
@@ -98,17 +113,29 @@ function checkAnswer(answer) {
     }
 
     // if there's more questions then show the next question
-    if (questionIndex < (questions.length -1)){
+    if (questionIndex < (questions.length - 1)) {
         console.log("NEXT");
         questionIndex++;
         nextQuestion(questionIndex);
-    }else{
+    } else {
         //if there's no more questions, show end screen
         isEnd = true;
     }
-    
+
 
 };
+
+function showEndScreen() {
+    //hide questions section
+    questionsEl.setAttribute("class", "hide");
+
+    //show end screen
+    endSccreenEl.setAttribute("class", "");
+
+    var finalScore = document.getElementById("final-score");
+    finalScore.textContent = timeLeft;
+
+}
 
 startButton.addEventListener('click', startQuiz);
 
