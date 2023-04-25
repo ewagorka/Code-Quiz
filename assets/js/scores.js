@@ -2,9 +2,7 @@ var highscoresEl = document.getElementById("highscores");
 var clearButton = document.getElementById("clear");
 
 //get elements form local storage
-var savedScores;
-
-//sort scores from highest to lowest if the array is not empty
+var storedScores;
 
 
 //view all scores
@@ -12,21 +10,23 @@ function renderScores() {
     //clear highscores 
     highscoresEl.innerHTML ="";
 
-    //get all scores fri=om local storage
-    savedScores = JSON.parse(localStorage.getItem("savedScores"));
+    //get all scores friom local storage
+    storedScores = JSON.parse(localStorage.getItem("storedScores"));
     //if there are multiple scores, then sort from the highest score
-    if (savedScores.length > 0) {
-        savedScores.sort((a, b) => b[1] - a[1]);
+    if (storedScores.length > 0) {
+        storedScores.sort((a, b) => b[1] - a[1]);
     }
-    for (i = 0; i < savedScores.length; i++) {
+
+    //add all saved scores as list elements
+    for (i = 0; i < storedScores.length; i++) {
 
         var indvidualScoreEl = document.createElement("li");
-        indvidualScoreEl.textContent = savedScores[i][0] + " - " + savedScores[i][1];
+        indvidualScoreEl.textContent = storedScores[i][0] + " - " + storedScores[i][1];
         highscoresEl.appendChild(indvidualScoreEl);
     }
 }
 
-
+//render all scores
 renderScores();
 
 //when clear button is clicked
@@ -34,9 +34,9 @@ clearButton.addEventListener("click", function (event) {
     event.preventDefault();
 
     //delete all score entries
-    savedScores.splice(0,savedScores.length);
+    storedScores.splice(0,storedScores.length);
     //update local storage
-    localStorage.setItem("savedScores", JSON.stringify(savedScores));
+    localStorage.setItem("storedScores", JSON.stringify(storedScores));
     //render blank scores board
     renderScores();
 

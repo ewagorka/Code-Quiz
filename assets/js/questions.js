@@ -1,8 +1,9 @@
+//create an array of question objects
 var questions = [
     {
         question: "Commonly used data types DO Not Include:",
         choices:[ "1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        answer: "alerts"
+        answer: "3. alerts"
 
     },
     {
@@ -31,4 +32,5 @@ var questions = [
     },
 ];
 
+//save all questions to local storage
 localStorage.setItem("questions",JSON.stringify(questions));
