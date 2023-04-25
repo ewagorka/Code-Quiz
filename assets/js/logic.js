@@ -140,8 +140,9 @@ function checkAnswer(answer) {
         feedbackEl.textContent = "Correct!";
     } else {
         //if incorrect, reduce time display 'Wrong!'
-        timeLeft -= 10; and
+        timeLeft -= 10;
         feedbackEl.textContent = "Wrong!";
+        console.log("wrong");
     }
 
     // if there's more questions then show the next question
@@ -207,7 +208,6 @@ choicesEl.addEventListener("click", function (event) {
     if (element.matches("button") === true) {
         //check the answer
         checkAnswer(element);
-
     }
 });
 
