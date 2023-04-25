@@ -67,12 +67,12 @@ My notes:
     * add hover effect to all buttons on the website
     * increase padding on the buttons
 
-In general I found this task a lot more challenging than the previous ones. I had to refer to the exercises we have done in the class in the past week a lot. The amount of Javascript work was a bit overwhelming to begin with, but it got easier after I made the initial notes and started coding. 
+In general I found this task a lot more challenging than the previous ones. I had to refer to the exercises we have done in the class in the past week a lot. The amount of Javascript work was a bit overwhelming to begin with, but it got easier after I made the initial notes and started coding. Overall I have learned a lot by completing this project, not only about Javascript, DOM etc. but also about project management and debugging.
 
 ## Credits
-I have used the following page: https://stackoverflow.com/questions/16096872/how-to-sort-2-dimensional-array-by-column-value
+I have used the following page: https://stackoverflow.com/questions/16096872/how-to-sort-2-dimensional-array-by-column-value to learn how to sort a two dimension array. 
 
-To learn how to sort a two dimension array. There wasn't a copy paste answer that I could use, but I manipulated what someone have written in the third answer to achieve the result that I wanted. 
+There wasn't a "copy paste" answer that I could use, but I manipulated what someone have written in the third answer to achieve the result that I wanted. 
 ## Technologies
 This project was made using HTML, CSS ,and Javascript.
 
