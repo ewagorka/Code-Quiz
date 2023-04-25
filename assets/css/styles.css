@@ -20,10 +20,12 @@ button {
   font-size: 100%;
   background-color: #563d7c;
   border-radius: 5px;
-  padding: 2px 10px;
+  /*Update padding*/
+  padding: 12px 16px;
   color: white;
   border: 0;
   transition: background-color 0.1s;
+
 }
 
 button:hover {
@@ -32,6 +34,9 @@ button:hover {
 
 .choices button {
   display: block;
+  /*set fixed width and allign text to the left*/
+  min-width: 250px;
+  text-align: start;
 }
 
 input[type="text"] {
@@ -85,4 +90,9 @@ li:nth-child(odd) {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+/* add hover effects on button */
+
+button:hover{
+  background-color: #B167E0;
 }
